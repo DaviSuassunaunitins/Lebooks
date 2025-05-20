@@ -1,0 +1,100 @@
+* {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+nav {
+    background-color: #333 !important;
+}
+
+nav div a{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+nav div a h1{
+    margin-left: 0.5em !important;
+}
+
+nav h3 {
+    color: white !important;
+}
+
+nav ul a:hover {
+    filter: brightness(70%) !important;
+    transition: 0.3s !important;
+    color: #808080 !important;
+}
+
+#mynavbar ul {
+    margin: 1em !important;
+}
+
+nav form {
+    width: 50% !important;
+    
+}
+
+nav form input,
+nav form button {
+    padding: 0.2em !important;
+}
+
+.livros {
+    /* margin:  !important; */
+    background-color: aqua;
+    display: flex !important;
+    justify-content: center !important;
+    /* align-items: first baseline !important; */
+}
+
+.livro {
+    margin: 2em !important;
+    border: 2px solid black !important;
+    border-radius: 1em !important;
+    padding: 2em !important;
+    width: 300px !important;
+    height: 400px !important;
+    box-shadow: 1px 15px 15px rgba(0, 0, 0, 0.5);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+}
+
+.livro a {
+    text-decoration: none !important;
+    color: black !important;
+}
+
+.livro a:hover {
+    color: blue !important;
+}
+
+.card-title {
+    background-color: aqua !important;
+    height: 200px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.card-text {
+    text-align: end !important;
+}
+
+footer {
+    background-color: #333 !important;
+    text-align: center !important;
+    color: white !important;
+}
+
+@media (max-width: 767px) {
+    
+    nav form {
+        margin: auto !important;
+        width: 80% !important;
+    }
+
+}

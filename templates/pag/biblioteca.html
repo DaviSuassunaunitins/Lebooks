@@ -1,0 +1,31 @@
+{%extends 'index.html'%}
+
+{%block title%}
+    Lista
+{%endblock%}
+
+{%block content%}
+    <div class="livros row container-fluid">
+    {% for livro in livros %}
+        <div class="card livro col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card-body col-sm-10">
+                <a class="link" href="/livro/{{livro.id}}">
+                    <h1 class="card-title">{{livro.título}}</h1>
+                    <div class="card-text">
+                        <h5>{{livro.autor}}</h5>
+                        <h5>{{livro.ano}}</h5>
+                        <h5>{{livro.get_gênero_1_display}}</h5>
+                        <h5>{{livro.get_gênero_2_display}}</h5>
+                        <h5>{{livro.get_gênero_3_display}}</h5>
+                        {%if livro.disponível%}
+                            <h6>&#x2705; Disponível</h6>
+                        {%else%}
+                            <h6>&#x274C; Indisponível</h6>
+                        {%endif%}
+                    </div>
+                </a>
+            </div>
+        </div>
+    {% endfor%}
+    </div>
+{%endblock%}

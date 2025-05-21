@@ -1,0 +1,62 @@
+{%extends 'index.html'%}
+
+{% load static %}
+
+{%block title%}
+    Biblioteca
+{%endblock%}
+
+{%block link%}
+    <a class="navbar-brand d-flex align-items-center" href="{%url 'bibliotecaView'%}">
+        <img src="{%static 'img/Logo2.png'%}" alt="Logo2" class="img-fluid">
+        <h1>Lebooks</h1>
+    </a>
+{%endblock%}
+
+{%block form%}
+    <form class="d-flex mx-auto col-12 col-sm-8 col-md-6 col-lg-4" method="GET" action="{%url 'listar_livros'%}">
+        <input class="form-control me-2" type="text" name="Buscar" placeholder="Procurar" value="{{ request.GET.Buscar }}">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+    </form>
+{%endblock%}
+
+{%block menu%}
+    <form class="butForm" action="/login">
+        <button class="butMenu" type="submit">
+            <img class="me-2" src="{%static 'img/Entrar.png'%}" alt="Entrar">
+            <h3>Entrar</h3>
+        </button>
+    </form>
+{%endblock%}
+
+{%block content%}
+    {% if query %}
+        <p>Você buscou por: <strong>{{ query }}</strong></p>
+    {% endif %}
+    {% if livros %}
+        <div class="row livros justify-content-center">
+            {% for livro in livros %}
+                <div class="card livro col-md-3 m-2">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ livro.título }}</h1>
+                        <div class="card-text">
+                            <h5>{{ livro.autor }}</h5>
+                            <h5>{{ livro.ano }}</h5>
+                            <h5>{{ livro.get_gênero_1_display }}</h5>
+                            <h5>{{ livro.get_gênero_2_display }}</h5>
+                            <h5>{{ livro.get_gênero_3_display }}</h5>
+                            {% if livro.disponível %}
+                                <h6>&#x2705; Disponível</h6>
+                            {% else %}
+                                <h6>&#x274C; Indisponível</h6>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Nenhum livro encontrado.</p>
+    {% endif %}
+
+{%endblock%}

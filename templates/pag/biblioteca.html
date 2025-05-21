@@ -6,12 +6,22 @@
     Biblioteca
 {%endblock%}
 
+{%block link%}
+    <a class="navbar-brand d-flex align-items-center" href="{%url 'bibliotecaView'%}">
+        <img src="{%static 'img/Logo2.png'%}" alt="Logo2" class="img-fluid">
+        <h1>Lebooks</h1>
+    </a>
+{%endblock%}
+
+{%block form%}
+    <form class="d-flex mx-auto col-12 col-sm-8 col-md-6 col-lg-4" method="GET" action="{%url 'listar_livros'%}">
+        <input class="form-control me-2" type="text" name="Buscar" placeholder="Procurar" value="{{ request.GET.Buscar }}">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+    </form>
+{%endblock%}
+
 {%block menu%} 
-    <!-- <a class="nav-link" href="/login">
-        <img class="me-2" src="{%static 'img/Entrar.png'%}" alt="Entrar">
-        <h3>Entrar</h3>
-    </a> -->
-    <form action="/login">
+    <form class="butForm" action="/login">
         <button class="butMenu" type="submit">
             <img class="me-2" src="{%static 'img/Entrar.png'%}" alt="Entrar">
             <h3>Entrar</h3>

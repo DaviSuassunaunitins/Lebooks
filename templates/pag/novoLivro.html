@@ -1,0 +1,52 @@
+{% extends 'index.html'%}
+
+{% load static %}
+
+{%block link%}
+    <a class="navbar-brand d-flex align-items-center" href="{%url 'biblioteca'%}">
+        <img src="{%static 'img/Logo2.png'%}" alt="Logo2" class="img-fluid">
+        <h1>Lebooks</h1>
+    </a>
+{%endblock%}
+
+{%block form%}
+    <form class="d-flex mx-auto col-12 col-sm-8 col-md-6 col-lg-4" method="GET" action="{%url 'listar_livros_admin'%}">
+        <input class="form-control me-2" type="text" name="Buscar" placeholder="Procurar" value="{{ request.GET.Buscar }}">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+    </form>
+{%endblock%}
+
+{%block menu%}
+    <div class="buts">
+        <form class="butForm" action="{%url 'novo-livro'%}">
+            <button class="butMenu">
+                <img src="{%static 'img/But.png'%}" alt="">
+            </button>
+        </form>
+        <form class="butForm" action="{%url 'logout'%}" method="post">
+            {%csrf_token%}
+            <button class="butMenu" type="submit">
+                <img class="me-2" src="{%static 'img/sair.png'%}" alt="Sair">
+                <h3>Sair</h3>
+            </button>
+        </form>
+    </div>
+{%endblock%}
+
+{% block title%} Adicionar livro {% endblock%}
+
+{% block content%}
+
+<div class="list-div">
+    <h1>Adicionando o livro</h1>
+
+    <form id="form" method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+
+        <input id="input" type="submit" class="btn btn-success" value="Salvar livro">
+    </form>
+
+</div>
+
+{% endblock%}

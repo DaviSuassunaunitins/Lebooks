@@ -5,6 +5,8 @@
 
 nav {
     background-color: #333 !important;
+    padding-left: 1em !important;
+    padding-right: 1em !important;
 }
 
 nav div a{
@@ -22,12 +24,6 @@ nav h3 {
     color: white !important;
 }
 
-/* nav ul a:hover {
-    filter: brightness(70%) !important;
-    transition: 0.3s !important;
-    color: #808080 !important;
-} */
-
 #mynavbar ul {
     margin: 1em !important;
 }
@@ -42,18 +38,22 @@ nav form button {
 }
 
 .buts {
-    background-color: aqua !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
+}
 
+.butForm {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .butMenu {
     background-color: #0d6efd !important;
     display: flex !important;
-    flex-direction: row !important;
     padding: 0.5em !important;
     border-radius: 0.5em !important;
     border: 2px solid #333 !important;
@@ -62,7 +62,7 @@ nav form button {
 .livros {
     display: flex !important;
     flex-direction: row !important;
-    background-color: aqua !important;
+    /* background-color: aqua !important; */
 
 }
 
@@ -110,6 +110,74 @@ nav form button {
     border-radius: 1em !important;
 }
 
+.list-div {
+    max-width: 600px !important;
+    margin: 40px auto !important;
+    padding: 40px !important;
+    background-color: #ffffff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.list-div h1 {
+    font-size: 26px !important;
+    color: #222 !important;
+    margin-bottom: 25px !important;
+    text-align: center !important;
+}
+
+#form p {
+    margin-bottom: 20px !important;
+}
+
+#form input[type="text"],
+#form input[type="email"],
+#form input[type="number"],
+#form input[type="password"],
+#form textarea,
+#form select {
+    width: 100% !important;
+    padding: 12px !important;
+    font-size: 16px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 8px !important;
+    background-color: #fff !important;
+    transition: border-color 0.3s, box-shadow 0.3s !important;
+}
+
+#input {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#input:hover {
+    background-color: #218838;
+}
+
+#delete-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #dc3545; /* vermelho Bootstrap */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#delete-button:hover {
+    background-color: #c82333;
+}
+
+
 footer {
     background-color: #333 !important;
     text-align: center !important;
@@ -121,6 +189,19 @@ footer {
     nav form {
         margin: auto !important;
         width: 80% !important;
+    }
+
+     .list-div {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .list-div h1 {
+        font-size: 22px;
+    }
+
+    body {
+        padding-bottom: 1em !important;
     }
 
 }

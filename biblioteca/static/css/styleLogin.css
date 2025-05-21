@@ -3,7 +3,7 @@
     padding: 0 !important;
 }
 
-header {
+a {
     background-color: #333 !important;
     display: flex !important;
     justify-content: center !important;
@@ -12,11 +12,11 @@ header {
     padding-bottom: 0.5em !important; 
 }
 
-header img {
+.img {
     display: block !important;
 }
 
-header h1 {
+.title {
     color: white !important;
 }
 

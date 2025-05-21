@@ -6,9 +6,6 @@ from django.views.decorators.cache import never_cache
 from .models import Livros
 from .forms import LivroForm
 
-# def loginView(request):
-#     return render(request, 'pag/login.html')
-
 def loginView(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -33,6 +30,19 @@ def bibliotecaView(request):
     livros = Livros.objects.all().order_by('-created_at', '-update_at')
     return render(request, 'pag/biblioteca.html', {'livros': livros})
 
+
+def novoLivro(request):
+    if request.method == 'POST':
+        form = LivroForm(request.POST)
+
+        if form.is_valid():
+            livro = form.save()
+            livro.save()
+            return redirect('/biblioteca')
+    else:
+        form = LivroForm()
+        return render(request, 'pag/novoLivro.html', {'form':form})
+
 def editLivro(request, id):
     livro = get_object_or_404(Livros, pk=id)
     form = LivroForm(instance=livro)
@@ -42,13 +52,31 @@ def editLivro(request, id):
 
         if(form.is_valid()):
             livro.save()
-            return redirect('/')
+            return redirect('/biblioteca')
         else:
-            return render(request, 'pag/livro.html', {'form':form, 'livro':livro})
+            return render(request, 'pag/editLivro.html', {'form':form, 'livro':livro})
     else: 
-        return render(request, 'pag/livro.html', {'form':form, 'livro':livro})
+        return render(request, 'pag/editLivro.html', {'form':form, 'livro':livro})
 
+def deleteLivro(request, id):
+     tarefa = get_object_or_404(Livros, pk=id)
+     tarefa.delete()
+     return redirect('/biblioteca')
 
-# def livroView(request, id):
-#     livro = get_object_or_404(Livros, pk=id)
-#     return render(request, 'pag/livro.html', {'livro':livro})
+def listarLivros(request):
+    query = request.GET.get('Buscar')
+    if query:
+        livros = Livros.objects.filter(título__icontains=query)
+    else:
+        livros = Livros.objects.all()
+
+    return render(request, 'pag/buscar.html', {'livros': livros})
+
+def listarLivrosAdmin(request):
+    query = request.GET.get('Buscar')
+    if query:
+        livros = Livros.objects.filter(título__icontains=query)
+    else:
+        livros = Livros.objects.all()
+
+    return render(request, 'pag/buscarAdmin.html', {'livros': livros})

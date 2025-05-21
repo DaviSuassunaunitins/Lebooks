@@ -1,0 +1,73 @@
+{%extends 'index.html'%}
+
+{% load static %}
+
+{%block title%}
+    Administrador
+{%endblock%}
+
+{%block link%}
+    <a class="navbar-brand d-flex align-items-center" href="{%url 'biblioteca'%}">
+        <img src="{%static 'img/Logo2.png'%}" alt="Logo2" class="img-fluid">
+        <h1>Lebooks</h1>
+    </a>
+{%endblock%}
+
+{%block form%}
+    <form class="d-flex mx-auto col-12 col-sm-8 col-md-6 col-lg-4" method="GET" action="{%url 'listar_livros_admin'%}">
+        <input class="form-control me-2" type="text" name="Buscar" placeholder="Procurar" value="{{ request.GET.Buscar }}">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+    </form>
+{%endblock%}
+
+{%block menu%}
+    <div class="buts">
+        <form class="butForm" action="{%url 'novo-livro'%}">
+            <button class="butMenu">
+                <img src="{%static 'img/But.png'%}" alt="">
+            </button>
+        </form>
+        <form class="butForm" action="{%url 'logout'%}" method="post">
+            {%csrf_token%}
+            <button class="butMenu" type="submit">
+                <img class="me-2" src="{%static 'img/sair.png'%}" alt="Sair">
+                <h3>Sair</h3>
+            </button>
+        </form>
+    </div>
+{%endblock%}
+
+{%block content%}
+    {% if query %}
+        <p>Você buscou por: <strong>{{ query }}</strong></p>
+    {% endif %}
+    {% if livros %}
+        <div class="row livros justify-content-center">
+            {% for livro in livros %}
+                <div class="card livro">
+                    <div class="card-body">
+                        <h1 class="card-title">{{livro.título}}</h1>
+                        <div class="card-text">
+                            <h5>{{livro.autor}}</h5>
+                            <h5>{{livro.ano}}</h5>
+                            <h5>{{livro.get_gênero_1_display}}</h5>
+                            <h5>{{livro.get_gênero_2_display}}</h5>
+                            <h5>{{livro.get_gênero_3_display}}</h5>
+                            {%if livro.disponível%}
+                                <h6>&#x2705; Disponível</h6>
+                            {%else%}
+                                <h6>&#x274C; Indisponível</h6>
+                            {%endif%}
+                            <a href="{%url 'edit-livro' livro.id%}">
+                                <img src="{%static 'img/Editar.png'%}" alt="Editar">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Nenhum livro encontrado.</p>
+    {% endif %}
+
+{%endblock%}

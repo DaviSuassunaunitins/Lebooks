@@ -1,11 +1,19 @@
-{%extends 'index.html'%}
+{% extends 'index.html'%}
 
-{%block title%}
-    Descrição
-{%endblock%}
+{% block title%} Editando o livro {% endblock%}
 
-{%block content%}
-    <div class="list-div">
-        <h1>{{livro.título}}</h1>
-    </div>
-{%endblock%}
+{% block content%}
+
+<div class="list-div">
+    <h1>Editando o livro '{{livro.título}}'</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+
+        <input type="submit" class="btn btn-success" value="Editar livro">
+    </form>
+
+</div>
+
+{% endblock%}

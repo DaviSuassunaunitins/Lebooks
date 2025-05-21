@@ -1,17 +1,54 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 from .models import Livros
 from .forms import LivroForm
 
-def one(request):
-    return render(request, 'index.html')
+# def loginView(request):
+#     return render(request, 'pag/login.html')
 
-def login(request):
-    return render(request, 'login.html')
+def loginView(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('biblioteca')
+        else:
+            messages.error(request, 'Usuário ou senha inválidos...')
+    return render(request, 'pag/login.html')
+
+@never_cache
+@login_required
 def biblioteca(request):
+    livros = Livros.objects.all().order_by('-created_at', '-update_at')
+    return render(request, 'pag/admin.html', {'livros': livros})
+
+
+def bibliotecaView(request):
     livros = Livros.objects.all().order_by('-created_at', '-update_at')
     return render(request, 'pag/biblioteca.html', {'livros': livros})
 
-def livroView(request, id):
+def editLivro(request, id):
     livro = get_object_or_404(Livros, pk=id)
-    return render(request, 'pag/livro.html', {'livro':livro})
+    form = LivroForm(instance=livro)
+
+    if(request.method == 'POST'):
+        form = LivroForm(request.POST, instance=livro)
+
+        if(form.is_valid()):
+            livro.save()
+            return redirect('/')
+        else:
+            return render(request, 'pag/livro.html', {'form':form, 'livro':livro})
+    else: 
+        return render(request, 'pag/livro.html', {'form':form, 'livro':livro})
+
+
+# def livroView(request, id):
+#     livro = get_object_or_404(Livros, pk=id)
+#     return render(request, 'pag/livro.html', {'livro':livro})

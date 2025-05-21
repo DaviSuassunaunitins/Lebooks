@@ -22,11 +22,11 @@ nav h3 {
     color: white !important;
 }
 
-nav ul a:hover {
+/* nav ul a:hover {
     filter: brightness(70%) !important;
     transition: 0.3s !important;
     color: #808080 !important;
-}
+} */
 
 #mynavbar ul {
     margin: 1em !important;
@@ -34,7 +34,6 @@ nav ul a:hover {
 
 nav form {
     width: 50% !important;
-    
 }
 
 nav form input,
@@ -42,26 +41,42 @@ nav form button {
     padding: 0.2em !important;
 }
 
-.livros {
-    /* margin:  !important; */
-    background-color: aqua;
+.buts {
+    background-color: aqua !important;
     display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
     justify-content: center !important;
-    /* align-items: first baseline !important; */
+
+}
+
+.butMenu {
+    background-color: #0d6efd !important;
+    display: flex !important;
+    flex-direction: row !important;
+    padding: 0.5em !important;
+    border-radius: 0.5em !important;
+    border: 2px solid #333 !important;
+}
+
+.livros {
+    display: flex !important;
+    flex-direction: row !important;
+    background-color: aqua !important;
+
 }
 
 .livro {
-    margin: 2em !important;
+    margin: 1em !important;
     border: 2px solid black !important;
     border-radius: 1em !important;
-    padding: 2em !important;
-    width: 300px !important;
-    height: 400px !important;
     box-shadow: 1px 15px 15px rgba(0, 0, 0, 0.5);
     display: flex !important;
+    width: 300px !important;
+    height: 430px !important;
     align-items: center !important;
     justify-content: center !important;
-    flex-wrap: wrap !important;
+    overflow: hidden !important;
 }
 
 .livro a {
@@ -69,19 +84,30 @@ nav form button {
     color: black !important;
 }
 
-.livro a:hover {
-    color: blue !important;
-}
-
 .card-title {
-    background-color: aqua !important;
     height: 200px !important;
+    width: 300px !important;
     display: flex !important;
     align-items: center !important;
+    justify-content: center !important;
+    background-color: #333 !important;
+    color: white !important;
+    text-align: center !important;
 }
 
 .card-text {
-    text-align: end !important;
+    text-align: center !important;
+}
+
+.card-text h5:nth-child(3),
+.card-text h5:nth-child(4),
+.card-text h5:nth-child(5) {
+    color: white !important;
+    background-color: #333 !important;
+    text-align: center !important;
+    margin: 0.5em !important;
+    border: 2px solid black !important;
+    border-radius: 1em !important;
 }
 
 footer {

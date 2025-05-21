@@ -3,20 +3,28 @@
 {% load static %}
 
 {%block title%}
-    Biblioteca
+    Administrador
 {%endblock%}
 
 {%block menu%} 
-    <!-- <a class="nav-link" href="/login">
-        <img class="me-2" src="{%static 'img/Entrar.png'%}" alt="Entrar">
-        <h3>Entrar</h3>
+    <!-- <a class="nav-link" href="{%url 'logout'%}">
+        <img class="me-2" src="{%static 'img/sair.png'%}" alt="Sair">
+        <h3>Sair</h3>
     </a> -->
-    <form action="/login">
-        <button class="butMenu" type="submit">
-            <img class="me-2" src="{%static 'img/Entrar.png'%}" alt="Entrar">
-            <h3>Entrar</h3>
-        </button>
-    </form>
+    <div class="buts">
+        <form action="">
+            <button class="butMenu">
+                <img src="{%static 'img/But.png'%}" alt="">
+            </button>
+        </form>
+        <form action="{%url 'logout'%}" method="post">
+            {%csrf_token%}
+            <button class="butMenu" type="submit">
+                <img class="me-2" src="{%static 'img/sair.png'%}" alt="Sair">
+                <h3>Sair</h3>
+            </button>
+        </form>
+    </div>
 {%endblock%}
 
 {%block content%}
@@ -37,6 +45,9 @@
                         {%else%}
                             <h6>&#x274C; Indisponível</h6>
                         {%endif%}
+                        <a href="{%url 'edit-livro' livro.id%}">
+                            <img src="{%static 'img/Editar.png'%}" alt="Editar">
+                        </a>
                     </div>
                 </div>
             </div>

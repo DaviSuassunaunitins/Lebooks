@@ -11,6 +11,8 @@ class Livros(models.Model):
         ('NFC', 'Não Ficção'),
         ('SUS', 'Suspense'),
         ('TER', 'Terror'),
+        ('LIT', 'Literatura Brasileira'),
+        ('ACA', 'Ação'),
     ]
 
     título = models.CharField(max_length=100)

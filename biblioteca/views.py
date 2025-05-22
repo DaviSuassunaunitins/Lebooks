@@ -30,7 +30,8 @@ def bibliotecaView(request):
     livros = Livros.objects.all().order_by('-created_at', '-update_at')
     return render(request, 'pag/biblioteca.html', {'livros': livros})
 
-
+@never_cache
+@login_required
 def novoLivro(request):
     if request.method == 'POST':
         form = LivroForm(request.POST)
@@ -43,6 +44,8 @@ def novoLivro(request):
         form = LivroForm()
         return render(request, 'pag/novoLivro.html', {'form':form})
 
+@never_cache
+@login_required
 def editLivro(request, id):
     livro = get_object_or_404(Livros, pk=id)
     form = LivroForm(instance=livro)
@@ -64,18 +67,18 @@ def deleteLivro(request, id):
      return redirect('/biblioteca')
 
 def listarLivros(request):
-    query = request.GET.get('Buscar')
-    if query:
-        livros = Livros.objects.filter(título__icontains=query)
+    buscarLivro = request.GET.get('Buscar')
+    if buscarLivro:
+        livros = Livros.objects.filter(título__icontains=buscarLivro)
     else:
         livros = Livros.objects.all()
 
     return render(request, 'pag/buscar.html', {'livros': livros})
 
 def listarLivrosAdmin(request):
-    query = request.GET.get('Buscar')
-    if query:
-        livros = Livros.objects.filter(título__icontains=query)
+    buscarLivro = request.GET.get('Buscar')
+    if buscarLivro:
+        livros = Livros.objects.filter(título__icontains=buscarLivro)
     else:
         livros = Livros.objects.all()
 

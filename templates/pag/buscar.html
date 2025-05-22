@@ -30,8 +30,8 @@
 {%endblock%}
 
 {%block content%}
-    {% if query %}
-        <p>Você buscou por: <strong>{{ query }}</strong></p>
+    {% if buscarLivro %}
+        <p>Você buscou por: <strong>{{ buscarLivro }}</strong></p>
     {% endif %}
     {% if livros %}
         <div class="row livros justify-content-center">
